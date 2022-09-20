@@ -1,0 +1,90 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="com.aiac.mongosoap"
+           targetNamespace="com.aiac.mongosoap"
+           elementFormDefault="qualified">
+
+    <xs:element name="studentInfoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="student" type="tns:studentInfo" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getStudentByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getStudentByEmailRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="email" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addStudentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="student" type="tns:studentInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateStudentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="student" type="tns:studentInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteStudentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteStudentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="studentInfo">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string" nillable="true"/>
+            <xs:element name="firstName" type="xs:string" />
+            <xs:element name="lastName" type="xs:string" />
+            <xs:element name="gender" type="tns:gender" />
+            <xs:element name="email" type="xs:string" />
+            <xs:element name="address" type="tns:addressInfo" />
+            <xs:element name="favoriteSubjects" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="gpa" type="xs:float" />
+            <xs:element name="created" type="xs:dateTime" nillable="true" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="gender">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MALE"/>
+            <xs:enumeration value="FEMALE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="addressInfo">
+        <xs:sequence>
+            <xs:element name="country" type="xs:string"/>
+            <xs:element name="postCode" type="xs:string"/>
+            <xs:element name="city" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
